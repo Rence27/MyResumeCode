@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Resume</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+      background: #f5f5f5;
+      color: #333;
+    }
+    header {
+      background-color: #4CAF50;
+      color: white;
+      padding: 2rem;
+      text-align: center;
+    }
+    section {
+      padding: 2rem;
+      background: white;
+      margin: 1rem auto;
+      max-width: 800px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      border-bottom: 2px solid #4CAF50;
+      padding-bottom: 0.5rem;
+    }
+    ul {
+      list-style-type: square;
+      padding-left: 1.5rem;
+    }
+    input, textarea, button {
+      display: block;
+      width: 100%;
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+  background-color: #4CAF50;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+button:hover {
+  background-color: #45a049;
+}
+
+    #comments {
+      margin-top: 1rem;
+    }
+    .comment {
+      background: #eee;
+      padding: 0.5rem;
+      margin-bottom: 1rem;
+      border-radius: 5px;
+    }
+    @media (max-width: 600px) {
+      section {
+        margin: 0.5rem;
+        padding: 1rem;
+      }
+    }
+    .download-btn {
+      text-align: center;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Flawrence C. Perez</h1>
+  <p>Aspiring Web Developer | Creative Thinker</p>
+</header>
+
+<section>
+  <h2>About Me</h2>
+  <p>I’m a passionate web development student interested in building user-friendly web apps. I enjoy learning new technologies and solving problems through code.</p>
+</section>
+
+<section>
+  <h2>Education</h2>
+  <ul>
+    <li>B.S. in Computer Science - Dominican College of Tarlac</li>
+    <li>Web Development - Code Academy</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Skills</h2>
+  <ul>
+    <li>HTML,</li>
+    <li>Responsive Design</li>
+    <li>Team Collaboration</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Projects</h2>
+  <ul>
+    <li>Personal Portfolio Website</li>
+    <li>To-Do List App with Local Storage</li>
+    <li>Responsive Blog Template</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Contact Me</h2>
+  <form id="contactForm">
+    <input type="email" id="email" placeholder="Your Email" required />
+    <textarea id="message" placeholder="Your Message" required></textarea>
+    <button type="submit">Send</button>
+  </form>
+</section>
+
+<section>
+  <h2>Comment Section</h2>
+  <form id="commentForm">
+    <input type="text" id="commentName" placeholder="Your Name" required />
+    <textarea id="commentText" placeholder="Your Comment" required></textarea>
+    <button type="submit">Submit Comment</button>
+  </form>
+  <div id="comments"></div>
+</section>
+
+<section class="download-btn">
+  <button onclick="downloadResume()">Download Resume</button>
+</section>
+
+<script>
+  // Contact Form Handler (for demo purposes only)
+  document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    alert('Message Sent! (This is a demo form.)');
+    this.reset();
+  });
+
+  // Comment Section Logic
+  document.getElementById('commentForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const name = document.getElementById('commentName').value;
+    const comment = document.getElementById('commentText').value;
+
+    const commentDiv = document.createElement('div');
+    commentDiv.className = 'comment';
+    commentDiv.innerHTML = `<strong>${name}</strong><p>${comment}</p>`;
+
+    document.getElementById('comments').prepend(commentDiv);
+
+    this.reset();
+  });
+
+  // Download Resume Logic
+  function downloadResume() {
+    const content = `
+    John Doe - Aspiring Web Developer
+
+    About Me:
+    Passionate about building interactive web experiences.
+
+    Education:
+    - B.S. Computer Science
+    - Web Bootcamp
+
+    Skills:
+    - HTML, CSS, JS
+    - Git, Collaboration
+
+    Projects:
+    - Portfolio, To-Do App, Blog
+
+    Contact:
+    john@example.com
+    `;
+
+    const blob = new Blob([content], { type: 'text/plain' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'resume.txt';
+    a.click();
+  }
+</script>
+
+</body>
+</html>
